@@ -10,6 +10,9 @@
 # Projet sur Github : https://github.com/3xpl0it-Sh4d0w/UrlCheck #
 ##################################################################
 
+COMMAND="$1"
+ARGUMENT="$2"
+
 SCRIPT_BANNER()
 {
     DEB="\E[1;30m[ == ]\E[0m"
@@ -92,7 +95,9 @@ GUI_VERSION()
 
 CLI_VERSION()
 {
-    printf "IN PROGRESS ! \n"
+    ARGUMENT="$1"
+    
+    curl -s -L -I -o /dev/null -w '%{url_effective}' $ARGUMENT
 }
 
 EXEC_OPTION()
@@ -109,7 +114,7 @@ EXEC_OPTION()
 
     elif [[ "$OPTION" = "--cli" ]] || [[ "$OPTION" = "cli" ]]
         then
-            CLI_VERSION $LINK
+            CLI_VERSION $ARGUMENT
 
     elif [[ "$OPTION" = "--install" ]] || [[ "$OPTION" = "install" ]]
         then
